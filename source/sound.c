@@ -26,6 +26,11 @@ sound_t loop;
 //function pointer
 void (*_snd_play)(int, short*);
 
+void snd_init()
+{
+  pl_create_stream(play_work);
+}
+
 void play_work(void *arg)
 {
   short buf[2*BUFSZ] = {0};
