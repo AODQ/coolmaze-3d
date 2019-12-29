@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include <GL/gl.h>
 #include "glfns.h"
 
@@ -101,7 +104,7 @@ void g_init(void)
     tex
   );
   free(tex);
-  glActiveTexture(GL_TEXTURE0);
+  //glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, test_tex);
   glUniform1i(u_tex, 0);
 

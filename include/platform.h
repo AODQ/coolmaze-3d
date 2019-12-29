@@ -2,7 +2,7 @@
 #define PLATFORM_H
 
 #include "types.h"
-#include "glfns.h"
+//#include "glfns.h"
 #include "keys.h"
 
 extern int mouse_x, mouse_y;
@@ -29,7 +29,7 @@ float pl_mstime(void);
 float pl_deltat(void);
 void pl_sleep(void);
 
-//TODO Audio
+//Audio
 typedef void(*audio_work_t)(void *arg);
 
 void pl_create_stream(audio_work_t );

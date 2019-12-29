@@ -1,14 +1,6 @@
 #include <dlfcn.h>
 #include <stdio.h>
 
-#include <pthread.h>
-
-#include <alsa/asoundlib.h>
-
-/*
-#include <pulse/simple.h>
-#include <pulse/error.h>
-*/
 #define BUFSZ 128
 
 #include  "sound.h"
@@ -26,7 +18,7 @@ sound_t loop;
 //function pointer
 void (*_snd_play)(int, short*);
 
-void snd_init()
+void snd_init(void)
 {
   pl_create_stream(play_work);
 }

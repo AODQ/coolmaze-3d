@@ -6,7 +6,8 @@
 #ifdef __unix__
   #include "X11/keysym.h"
 #elif defined _WIN32
-  #include "Winuser.h"
+  #include <windows.h>
+  #include <Winuser.h>
 #endif
 
 #include "keys.h"

@@ -159,8 +159,8 @@ g_model_t * map_model(map_t * m)
   unsigned int * en = malloc(faces*sizeof(IN));
   for (size_t i = 0; i < faces; i++){
     memcpy(en + i*6, IN, sizeof(IN));
-    for(int i = 0; i < 6; i++){
-      IN[i] += 4;
+    for(int j = 0; j < 6; j++){
+      IN[j] += 4;
     }
   }
 

@@ -21,7 +21,8 @@ g_billboard_t * bb;
 vec_t pos, goal;
 short tone[10000];
 int dir[4];
-const float PI = 3.14159f;
+//const float PI = 3.14159f;
+#define PI 3.14159f
 int won = 0;
 float dt;
 float deg;

@@ -3,8 +3,14 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifdef _WIN32
+#include <wingdi.h>
+#else
 #include <GL/glx.h>
 #include <GL/glxext.h>
+
+#endif
+
 
 #define X(fn, type) type fn;
   GLFNS_XMACRO
@@ -16,7 +22,7 @@ int load_opengl_functions(void)
     printf("Unsuitable OpenGL Version: %s\n", glGetString(GL_VERSION));
     return -1;
   }
-  #ifdef __WIN32
+  #ifdef _WIN32
   #define X(fn, type) fn = (type) wglGetProcAddress(#fn);
   #else 
   //Don't have to query extensions for core
