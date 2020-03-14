@@ -18,17 +18,18 @@
 
 int load_opengl_functions(void)
 {
-  if(strcmp("2.1", (char*) glGetString(GL_VERSION)) > 0){
+  const unsigned char * str = glGetString(GL_VERSION);
+  if(strcmp("2.1", str) > 0){
     printf("Unsuitable OpenGL Version: %s\n", glGetString(GL_VERSION));
     return -1;
   }
   #ifdef _WIN32
-  #define X(fn, type) fn = (type) wglGetProcAddress(#fn);
-  #else 
-  //Don't have to query extensions for core
-  #define X(fn, type) fn = (type) glXGetProcAddressARB((GLubyte *) #fn);
+    #define X(fn, type) fn = (type) wglGetProcAddress(#fn);
+  #else
+    #define X(fn, type) fn = (type) glXGetProcAddressARB((GLubyte *) #fn);
+  #endif
+
     GLFNS_XMACRO
   #undef X
-  #endif
   return 0;
 }
