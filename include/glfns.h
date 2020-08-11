@@ -3,9 +3,11 @@
 
 #ifdef _WIN32
 #include "windows.h"
+#else
+#include <GL/glx.h>
 #endif
-#include "GL/gl.h"
-#include "GL/glext.h"
+#include <GL/gl.h>
+#include <GL/glext.h>
 
 #define GLFNS_XMACRO \
 X(glGenBuffers, PFNGLGENBUFFERSPROC) \
@@ -35,7 +37,10 @@ X(glUniformMatrix3fv, PFNGLUNIFORMMATRIX3FVPROC) \
 X(glUniformMatrix4fv, PFNGLUNIFORMMATRIX4FVPROC) \
 X(glGetUniformLocation, PFNGLGETUNIFORMLOCATIONPROC) \
 X(glEnableVertexAttribArray, PFNGLENABLEVERTEXATTRIBARRAYPROC) \
-X(glDisableVertexAttribArray, PFNGLDISABLEVERTEXATTRIBARRAYPROC) \
+X(glDisableVertexAttribArray, PFNGLDISABLEVERTEXATTRIBARRAYPROC)
+
+#define GLFNS_X_POSIX_MACRO \
+X(glXSwapIntervalEXT, PFNGLXSWAPINTERVALEXTPROC)
 
 /*
 X(glDrawElements, PFNGLDRAWELEMENTSPROC) \
@@ -46,6 +51,12 @@ X(glDrawArrays, PFNGLDRAWARRAYSPROC) \
 #define X(fn, type) extern type fn;
 GLFNS_XMACRO
 #undef X
+
+#ifdef __unix__
+#define X(fn, type) extern type fn;
+GLFNS_X_POSIX_MACRO
+#undef X
+#endif
 
 int load_opengl_functions(void);
 

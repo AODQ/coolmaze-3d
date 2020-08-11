@@ -1,5 +1,7 @@
 #include "platform.h"
 
+#include "glfns.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -62,6 +64,8 @@ void pl_create_window(int w, int h, int fullscr)
     puts("Could not make context Current");
   }
   load_opengl_functions();
+
+  glXSwapIntervalEXT(x_dp, x_win, 0);
 }
 
 void pl_destroy_window(void)

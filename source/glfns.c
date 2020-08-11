@@ -8,12 +8,15 @@
 #else
 #include <GL/glx.h>
 #include <GL/glxext.h>
-
 #endif
-
 
 #define X(fn, type) type fn;
   GLFNS_XMACRO
+
+#ifdef __unix__
+  GLFNS_X_POSIX_MACRO
+#endif
+
 #undef X
 
 int load_opengl_functions(void)
@@ -30,6 +33,11 @@ int load_opengl_functions(void)
   #endif
 
     GLFNS_XMACRO
+
+  #ifdef __unix__
+    GLFNS_X_POSIX_MACRO
+  #endif
+
   #undef X
   return 0;
 }
