@@ -19,7 +19,7 @@
 int load_opengl_functions(void)
 {
   const unsigned char * str = glGetString(GL_VERSION);
-  if(strcmp("2.1", str) > 0){
+  if(strcmp("2.1", (char const *)str) > 0){
     printf("Unsuitable OpenGL Version: %s\n", glGetString(GL_VERSION));
     return -1;
   }
